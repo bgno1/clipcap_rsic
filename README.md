@@ -35,11 +35,13 @@ datasets/
 │   ├── dataset.json
 │   ├── dataset_ucm_cn.json
 │   └── imgs/
-└── RSICD/
-    ├── annotations_rsicd/
-    │   ├── dataset_rsicd.json
-    │   └── dataset_rsicd_cn.json
-    └── RSICD_images/
+├── RSICD/
+│   ├── annotations_rsicd/
+│   │   ├── dataset_rsicd.json
+│   │   └── dataset_rsicd_cn.json
+│   └── RSICD_images/
+└── .py files   # All Python code files in this repository
+
 
 ```
 
@@ -92,3 +94,11 @@ python scores.py --eval_file sydney_mlp.json
 ```
 
 The evaluation results will be saved in the `./output/scores` directory.
+
+
+
+[1] Mokady, Ron, Amir Hertz, and Amit H. Bermano. "Clipcap: Clip prefix for image captioning." *arXiv preprint arXiv:2111.09734* (2021).
+
+[2] Qu, Bo, et al. "Deep semantic understanding of high resolution remote sensing image." *2016 International conference on computer, information and telecommunication systems (Cits)*. IEEE, 2016.
+
+[3] Lu, Xiaoqiang, et al. "Exploring models and data for remote sensing image caption generation." *IEEE Transactions on Geoscience and Remote Sensing* 56.4 (2017): 2183-2195.
