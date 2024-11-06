@@ -1,6 +1,26 @@
-# clipcap_rsic
+# Enhanced CLIP-GPT Framework for Cross-Lingual Remote Sensing Image Captioning
 
-### 1. Dataset Preparation
+
+
+
+
+### Overview
+
+The code and datasets in this repository support the findings of the paper "Enhanced CLIP-GPT Framework for Cross-Lingual Remote Sensing Image Captioning" (currently under peer review).
+
+
+
+This research introduces a CLIP-GPT-based RSIC (Remote Sensing Image Captioning) method, inspired by Mokady et al.’s work [1]. For more details, please refer to their GitHub repository: [CLIP prefix caption](https://github.com/rmokady/CLIP_prefix_caption).
+
+
+
+The datasets used in this project—Sydney-captions, UCM-captions, and RSICD—are available as described in Qu et al. [2] and Lu et al. [3]. Additionally, the encoder-decoder RSIC model, enhanced with an attention mechanism in this implementation, is based on the code by Vinodababu et al. and has been further improved. Their original codebase can be found at  https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Image-Captioning.
+
+
+
+### User Guide for CLIP-GPT RSIC model
+
+#### Dataset Preparation
 
 Before running the code, please ensure that the annotation files and images are prepared and stored according to the following directory structure: 
 
@@ -9,17 +29,21 @@ datasets/
 │
 ├── Sydney_captions/
 │   ├── dataset.json
+│   ├── dataset_sydney_cn.json
 │   └── imgs/
 ├── UCM_captions/
 │   ├── dataset.json
+│   ├── dataset_ucm_cn.json
 │   └── imgs/
 └── RSICD/
     ├── annotations_rsicd/
-    │   └── dataset_rsicd.json
+    │   ├── dataset_rsicd.json
+    │   └── dataset_rsicd_cn.json
     └── RSICD_images/
+
 ```
 
-### 2. Generate CLIP embeddings for all images in the dataset
+#### Generate CLIP embeddings for all images in the dataset
 
 Run the following command to generate the CLIP embeddings:
 
@@ -29,7 +53,7 @@ python generate_clip_embeddings.py --dataset_type sydney
 
 The generated CLIP embeddings will be saved in the `./data` directory.
 
-### 3. Train the model
+#### Train the model
 
 Specify the dataset using the `--data` parameter (options: sydney, ucm, rsicd, sydney_cn, etc.), and specify the mapping network type using the `--mapping_type` parameter (options: mlp, transformer, or amht).
 
@@ -41,7 +65,7 @@ python train.py --data sydney --mapping_type mlp
 
 During training, the model weights will be saved to the `out_dir` directory specified in the `train.py` file.
 
-### 4. Generate JSON files for evaluation
+#### Generate JSON files for evaluation
 
 Run **generate_eval_files.py** to perform RSIC inference on the test set and generate the JSON file for scoring.
 
@@ -59,7 +83,7 @@ python generate_eval_files.py --model sydney_mlp.pt
 
 The generated JSON file (for scoring evaluation) will contain image IDs and their corresponding generated descriptions. The output file will be automatically saved in the `./output/eval_files/` directory, with the filename `<model_filename>.json`.
 
-### 5. Evaluating image captioning results
+#### Evaluating image captioning results
 
 **scores.py** will automatically detect the dataset name from the filename and compare it with the corresponding ground-truth annotations for scoring.
 
